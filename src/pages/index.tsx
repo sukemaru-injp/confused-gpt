@@ -1,10 +1,7 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
+import React from 'react'
 import styled from 'styled-components'
 import { CommonHead } from '@/common/meta/CommonHead'
-
-const inter = Inter({ subsets: ['latin'] })
-
+import Image from 'next/image'
 export default function Home() {
 
   return (
@@ -14,6 +11,8 @@ export default function Home() {
         <Test>
           gptの混乱
         </Test>
+
+        <Image height={300} width={300} src='/eringi-min.png' alt='eringi' />
       </div>
     </>
   )
