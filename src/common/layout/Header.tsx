@@ -24,7 +24,6 @@ const HeaderStyle = styled.header`
 const Title = styled.h1`
   color: ${colors.white};
 `
-
 const StyledLink = styled(Link)`
   text-decoration: none;
 `
