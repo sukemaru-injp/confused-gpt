@@ -2,11 +2,11 @@ export const sleep = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-type ResourceStatus = 'pending' | 'fulfilled' | 'rejected'
+type ResourceStatus = 'pending' | 'fulfilled' | 'rejected';
 export type Resource<T> = {
-  read: () => T
-} 
-export function resource<T>(promise: Promise<T>): Resource<T>{
+  read: () => T;
+};
+export function resource<T>(promise: Promise<T>): Resource<T> {
   let status: ResourceStatus = 'pending';
   let res: T;
 
@@ -18,10 +18,11 @@ export function resource<T>(promise: Promise<T>): Resource<T>{
     (e) => {
       status = 'rejected';
       res = e;
-  });
+    },
+  );
 
   const read = () => {
-    switch(status) {
+    switch (status) {
       case 'pending':
         throw suspender;
       case 'fulfilled':
@@ -29,7 +30,7 @@ export function resource<T>(promise: Promise<T>): Resource<T>{
       case 'rejected':
         throw res;
       default:
-        throw new Error('予想外')
+        throw new Error('予想外');
     }
   };
 
