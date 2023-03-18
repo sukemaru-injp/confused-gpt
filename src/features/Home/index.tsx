@@ -1,6 +1,7 @@
 import React from "react";
 import { Resource } from "@/utils";
 import { HelloAdapter } from "@/utils/adapter/helloAdapter";
+import { Form } from "./components/Form";
 
 type Props = {
   helloResource: Resource<HelloAdapter>
@@ -14,8 +15,10 @@ const HomeFeature: React.FC<Props> = ({
     return <p>isErr</p>
   }
   return (
-    <p>{test.value.text}</p>
+    <>
+      <Form />
+      <p>{test.value.text}</p>
+    </>
   )
 }
-
 export default HomeFeature

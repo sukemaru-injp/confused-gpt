@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { sleep } from '@/utils'
-import { Hello } from '@/utils/model'
+import { Hello } from '@/model'
 
 export default async function handler(
   req: NextApiRequest,

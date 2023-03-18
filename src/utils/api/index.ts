@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Hello } from "../model";
+import { Hello } from "@/model";
 
 const client = axios.create({
   headers: {

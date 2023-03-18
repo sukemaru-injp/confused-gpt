@@ -1,7 +1,7 @@
 import { getHello } from "../api"
 import { ok, err } from 'neverthrow'
-import { Hello } from "../model";
 import { AdapterType } from ".";
+import { Hello } from "@/model";
 
 export type HelloAdapter = AdapterType<Hello>
 
