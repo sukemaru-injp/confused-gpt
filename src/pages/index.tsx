@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { CommonHead } from '@/common/meta/CommonHead';
 import Image from 'next/image';
-import { helloAdapter, HelloAdapter } from '@/utils/adapter/helloAdapter';
-import { resource, Resource } from '@/utils';
+import { helloAdapter } from '@/utils/adapter/helloAdapter';
+import { resource } from '@/utils';
 import dynamic from 'next/dynamic';
 
 const Testing = dynamic(() => import('../features/Home'), { ssr: false });
