@@ -3,4 +3,4 @@ export const colors = {
   sub: '#9c4040',
   white: '#fff',
   bg: '#f5f5dc',
-} as const
+} as const;

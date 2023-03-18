@@ -11,7 +11,7 @@ export const zodiacOptions = [
   { label: 'やぎ座', value: 'capricorn' },
   { label: 'みずがめ座', value: 'aquarius' },
   { label: 'うお座', value: 'pisces' },
-] as const
+] as const;
 
 export const zodiac = {
   aries: 'おひつじ座',
@@ -26,6 +26,6 @@ export const zodiac = {
   capricorn: 'やぎ座',
   aquarius: 'みずがめ座',
   pisces: 'うお座',
-} as const
+} as const;
 
-export type ZodiacType = keyof typeof zodiac
+export type ZodiacType = keyof typeof zodiac;

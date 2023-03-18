@@ -1,7 +1,7 @@
-import { ok, err, Ok, Err } from 'neverthrow'
+import { ok, err, Ok, Err } from 'neverthrow';
 
 type DefaultError = {
-  name: "error";
+  name: 'error';
   error: unknown;
-}
-export type AdapterType<T, E = DefaultError> = Ok<T, never> | Err<never, E>
+};
+export type AdapterType<T, E = DefaultError> = Ok<T, never> | Err<never, E>;

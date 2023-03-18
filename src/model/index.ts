@@ -1,1 +1,1 @@
-export { type Hello } from './Hello'
+export { type Hello } from './Hello';
