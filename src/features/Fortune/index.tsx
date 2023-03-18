@@ -13,7 +13,9 @@ type Props = {
 
 export const Fortune = ({ zodiac, date }: Props): JSX.Element => {
   const fortuneResource = useMemo(() => {
-    return resource(generateFortuneAdapter({ zodiac }));
+    return resource(
+      generateFortuneAdapter({ zodiac, mock: process.env.NODE_ENV !== 'production' }),
+    );
   }, [zodiac]);
 
   return (
