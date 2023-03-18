@@ -9,13 +9,7 @@ export default function FortuneDetail() {
     query: { id, date },
   } = useRouter();
 
-  if (
-    id == null ||
-    typeof id !== 'string' ||
-    date == null ||
-    typeof date !== 'string' ||
-    !isZodiacType(id)
-  ) {
+  if (typeof id !== 'string' || typeof date !== 'string' || !isZodiacType(id)) {
     return (
       <>
         <Failed />
