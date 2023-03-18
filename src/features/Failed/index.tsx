@@ -1,9 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export const Failed = () => {
   return (
-    <>
-      <h2>Resource not found</h2>
-    </>
+    <Wrapper>
+      <h2>もう一度お試しください</h2>
+    </Wrapper>
   );
 };
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

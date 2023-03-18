@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors, spacings } from '../ui/styles';
-import Link from 'next/link';
+import { Anchor } from '../ui/Anchor';
 
 export const Header: React.FC = () => {
   return (
     <HeaderStyle>
-      <StyledLink href='/'>
+      <Anchor href='/'>
         <Title>エリンギ占い</Title>
-      </StyledLink>
+      </Anchor>
     </HeaderStyle>
   );
 };
@@ -23,7 +23,4 @@ const HeaderStyle = styled.header`
 `;
 const Title = styled.h1`
   color: ${colors.white};
-`;
-const StyledLink = styled(Link)`
-  text-decoration: none;
 `;

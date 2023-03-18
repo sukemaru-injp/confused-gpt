@@ -29,3 +29,7 @@ export const zodiac = {
 } as const;
 
 export type ZodiacType = keyof typeof zodiac;
+
+export function isZodiacType(input: string): input is ZodiacType {
+  return Object.keys(zodiac).some((k) => k === input);
+}
