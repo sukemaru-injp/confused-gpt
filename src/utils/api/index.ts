@@ -8,4 +8,4 @@ const client = axios.create({
   timeout: 8000,
 })
 
-export const getHello = () => client.get<Hello>('/api/hello')
+export const getHello = (req: { req: string }) => client.post<{ req: string }, Hello>('/api/hello', req)

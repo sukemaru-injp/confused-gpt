@@ -9,7 +9,7 @@ export type HelloAdapter = Ok<Hello, never> | Err<never, {
 
 export const helloAdapter = async () => {
   try {
-    const { data } = await getHello()
+    const data = await getHello({ req: 'オネシャス' })
     return ok(data)
   } catch(e: unknown) {
     return err({name: 'error' as const, error: e})
