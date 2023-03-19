@@ -6,5 +6,7 @@ export type FortuneRequest = {
 };
 
 export type FortuneResult = {
-  data: unknown;
+  data: {
+    text: string | null;
+  };
 };

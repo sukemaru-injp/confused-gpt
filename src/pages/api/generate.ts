@@ -47,7 +47,11 @@ export default async function handler(
       )}の今日の運勢みたいな文章を作ってください。仕事や恋愛に関することも盛り込んでください`,
       max_tokens: 200,
     });
-    res.status(200).json({ data: gptResponse.data.choices });
+    res.status(200).json({
+      data: {
+        text: gptResponse.data.choices[0].text ?? null,
+      },
+    });
   } catch (e: unknown) {
     res.status(500).json({ name: 'unknownError', error: e });
   }
