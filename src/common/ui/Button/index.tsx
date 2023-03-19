@@ -5,7 +5,7 @@ export const Button = styled.button`
   border-radius: 5px;
   padding: ${spacings.S} ${spacings.M};
   color: ${colors.white};
-  background-color: ${colors.sub};
+  background-color: ${colors.main};
   width: '100%';
   border: none;
   cursor: pointer;

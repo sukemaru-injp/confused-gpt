@@ -2,21 +2,16 @@ import React from 'react';
 import { Resource } from '@/utils';
 import { HelloAdapter } from '@/utils/adapter/helloAdapter';
 import { Form } from './components/Form';
-
+import { TopSection } from './components/TopSection';
 type Props = {
   helloResource: Resource<HelloAdapter>;
 };
 
-const HomeFeature: React.FC<Props> = ({ helloResource }) => {
-  const test = helloResource.read();
-  if (test.isErr()) {
-    return <p>isErr</p>;
-  }
-
+const HomeFeature: React.FC<Props> = () => {
   return (
     <>
+      <TopSection />
       <Form />
-      <p>{test.value.text}</p>
     </>
   );
 };

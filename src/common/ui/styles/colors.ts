@@ -1,6 +1,6 @@
 export const colors = {
-  main: '#ffc7b3',
-  sub: '#9c4040',
+  main: '#56a145',
+  sub: '#fbcf7e',
   white: '#fff',
   bg: '#f5f5dc',
 } as const;

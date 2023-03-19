@@ -4,6 +4,8 @@ import { FortuneAdapter } from '@/utils/adapter/generateFortuneAdapter';
 import { Failed } from '../Failed';
 import { FortuneResult } from '@/model/FortuneModel';
 import { getZodiacLabel, ZodiacType } from '@/model/Zodiac';
+import styled from 'styled-components';
+import { spacings } from '@/common/ui/styles';
 
 type ViewProps = {
   fortuneOkResult: FortuneResult;
@@ -28,14 +30,23 @@ const FortuneResultView = ({ fortuneOkResult, zodiac }: ViewProps): JSX.Element 
       <div>
         <h2>今日の{zodiacLabel}の運勢</h2>
       </div>
-      <div>
+      <ResultWrapper>
         {texts.map((t, idx) => {
-          return <p key={`t-${idx}`}>{t}</p>;
+          return <Text key={`t-${idx}`}>{t}</Text>;
         })}
-      </div>
+        <Text>
+          今日も元気にいってらっしゃい！
+        </Text>
+      </ResultWrapper>
     </>
   );
 };
+const ResultWrapper = styled.div`
+  padding: ${spacings.S};
+`
+const Text = styled.p`
+  line-height: 1.5rem;
+`
 
 type Props = {
   fortuneResource: Resource<FortuneAdapter>;

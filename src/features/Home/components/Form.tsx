@@ -24,6 +24,7 @@ export const Form = (): JSX.Element => {
 
   return (
     <FormWrapper>
+      <Span>星座を選択してください↓</Span>
       <Select options={zodiacOptions} onChange={handleChange} width='200px' />
       <Button onClick={handleClick}>占いを見る</Button>
     </FormWrapper>
@@ -35,3 +36,6 @@ const FormWrapper = styled.div`
   flex-direction: column;
   gap: ${spacings.XS};
 `;
+const Span = styled.span`
+  padding: ${spacings.XS} 0;
+`
