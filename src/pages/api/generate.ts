@@ -41,11 +41,11 @@ export default async function handler(
   try {
     const gptResponse = await api.createCompletion({
       model: 'text-davinci-003',
-      temperature: 0.5,
+      temperature: 0.1,
       prompt: `${getZodiacLabel(
         req.body.zodiac,
       )}の今日の運勢みたいな文章を作ってください。仕事や恋愛に関することも盛り込んでください`,
-      max_tokens: 200,
+      max_tokens: 600,
     });
     res.status(200).json({
       data: {

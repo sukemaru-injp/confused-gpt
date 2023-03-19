@@ -8,7 +8,7 @@ const FortuneContainer = dynamic(() => import('./FortuneContainer'), { ssr: fals
 
 type Props = {
   zodiac: ZodiacType;
-  date: string;
+  date: string; // DateString yyyyMMdd
 };
 
 export const Fortune = ({ zodiac, date }: Props): JSX.Element => {
@@ -21,8 +21,7 @@ export const Fortune = ({ zodiac, date }: Props): JSX.Element => {
   return (
     <>
       <React.Suspense fallback={<p>Loading...</p>}>
-        <h2>占い結果</h2>
-        <FortuneContainer fortuneResource={fortuneResource} />
+        <FortuneContainer fortuneResource={fortuneResource} date={date} zodiac={zodiac} />
       </React.Suspense>
     </>
   );

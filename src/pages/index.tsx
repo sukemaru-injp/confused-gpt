@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import styled from 'styled-components';
 import { CommonHead } from '@/common/meta/CommonHead';
 import Image from 'next/image';
 import { helloAdapter } from '@/utils/adapter/helloAdapter';
@@ -17,8 +16,6 @@ export default function Home() {
     <>
       <CommonHead />
       <div>
-        <Test>gptの混乱</Test>
-
         <React.Suspense fallback={<p>Loading...</p>}>
           <Testing helloResource={hello} />
         </React.Suspense>
@@ -28,7 +25,3 @@ export default function Home() {
     </>
   );
 }
-
-const Test = styled.p`
-  color: red;
-`;
