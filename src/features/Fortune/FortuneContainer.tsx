@@ -34,19 +34,17 @@ const FortuneResultView = ({ fortuneOkResult, zodiac }: ViewProps): JSX.Element 
         {texts.map((t, idx) => {
           return <Text key={`t-${idx}`}>{t}</Text>;
         })}
-        <Text>
-          今日も元気にいってらっしゃい！
-        </Text>
+        <Text>今日も元気にいってらっしゃい！</Text>
       </ResultWrapper>
     </>
   );
 };
 const ResultWrapper = styled.div`
   padding: ${spacings.S};
-`
+`;
 const Text = styled.p`
   line-height: 1.5rem;
-`
+`;
 
 type Props = {
   fortuneResource: Resource<FortuneAdapter>;

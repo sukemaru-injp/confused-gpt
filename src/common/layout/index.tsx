@@ -2,12 +2,12 @@ import React from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { colors } from '../ui/styles';
-import { Kosugi } from 'next/font/google'
+import { Kosugi } from 'next/font/google';
 
 const kosugi = Kosugi({
   subsets: ['latin'],
-  weight: '400'
-})
+  weight: '400',
+});
 
 type Props = {
   children: React.ReactNode;

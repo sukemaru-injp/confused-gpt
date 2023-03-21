@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { spacings } from "@/common/ui/styles";
-import { mediaQuery } from "@/common/ui/styles/mixin";
-import { Form } from "./Form";
-import Image from "next/image";
+import React from 'react';
+import styled from 'styled-components';
+import { spacings } from '@/common/ui/styles';
+import { mediaQuery } from '@/common/ui/styles/mixin';
+import { Form } from './Form';
+import Image from 'next/image';
 
 export const MainSection = () => {
   return (
@@ -13,8 +13,8 @@ export const MainSection = () => {
         <Image height={300} width={300} src='/eringi-min.png' alt='eringi' />
       </ImageWrapper>
     </Wrapper>
-  )
-}
+  );
+};
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -22,10 +22,12 @@ const Wrapper = styled.div`
   gap: ${spacings.M};
   padding: ${spacings.S};
 
-  ${mediaQuery(`
+  ${mediaQuery(
+    `
     flex-direction: column;
-  `, 'spOnly')}
-`
+  `,
+    'spOnly',
+  )}
+`;
 
-const ImageWrapper = styled.div`
-`
+const ImageWrapper = styled.div``;

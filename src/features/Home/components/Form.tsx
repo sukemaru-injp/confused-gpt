@@ -38,4 +38,4 @@ const FormWrapper = styled.div`
 `;
 const Span = styled.span`
   padding: ${spacings.XS} 0;
-`
+`;
