@@ -16,7 +16,7 @@ export const Form = (): JSX.Element => {
 
   const handleClick = useCallback(() => {
     router.push({
-      pathname: `/interview/${select}`
+      pathname: `/interview/${select}`,
     });
   }, [router, select]);
 

@@ -1,16 +1,16 @@
-import React, { useMemo } from "react";
-import { JobType } from "@/model/JobModel";
+import React, { useMemo } from 'react';
+import { JobType } from '@/model/JobModel';
 import { resource } from '@/utils';
-import { generateInterviewAdapter } from "@/utils/adapter/generateInterviewAdapter";
-import { Container } from "./components/Container";
+import { generateInterviewAdapter } from '@/utils/adapter/generateInterviewAdapter';
+import { Container } from './components/Container';
 
 type Props = {
-  job: JobType
-}
+  job: JobType;
+};
 export const InterView: React.FC<Props> = ({ job }) => {
   const interviewResource = useMemo(() => {
-    return resource(generateInterviewAdapter({ job, mock: true }))
-  }, [job])
+    return resource(generateInterviewAdapter({ job, mock: true }));
+  }, [job]);
 
   return (
     <>
@@ -18,5 +18,5 @@ export const InterView: React.FC<Props> = ({ job }) => {
         <Container resource={interviewResource} />
       </React.Suspense>
     </>
-  )
-}
+  );
+};

@@ -10,4 +10,5 @@ const client = axios.create({
 export const getHello = (req: { req: string }) =>
   client.post<{ req: string }, AxiosResponse<Hello>>('/api/hello', req);
 
-export const generateInterview = (req: GenerateRequest) => client.post<GenerateRequest, AxiosResponse<GenerateResult>>('/api/generate', req)
+export const generateInterview = (req: GenerateRequest) =>
+  client.post<GenerateRequest, AxiosResponse<GenerateResult>>('/api/generate', req);

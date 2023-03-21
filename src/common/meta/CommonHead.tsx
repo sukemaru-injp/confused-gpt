@@ -24,7 +24,10 @@ type Props = {
 };
 
 export const CommonHead: React.FC<Props> = ({ title }) => {
-  const customTitle = useMemo(() => (title ? `${title} | エリンギ質問Gen` : 'エリンギ質問Gen'), [title]);
+  const customTitle = useMemo(
+    () => (title ? `${title} | エリンギ質問Gen` : 'エリンギ質問Gen'),
+    [title],
+  );
 
   return (
     <>

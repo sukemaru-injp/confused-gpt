@@ -10,8 +10,8 @@ export const jobOptions = [
   { label: '販売員', value: 'sales_staff' },
   { label: 'システムエンジニア', value: 'engineer' },
   { label: 'プロジェクトマネージャー', value: 'manager' },
-  { label: 'コンサルタント', value: 'consultant' }
-] as const
+  { label: 'コンサルタント', value: 'consultant' },
+] as const;
 
 export const jobs = {
   general: '総務',
@@ -25,10 +25,10 @@ export const jobs = {
   sales_staff: '販売員',
   engineer: 'システムエンジニア',
   manager: 'プロジェクトマネージャー',
-  consultant: 'コンサルタント'
-} as const
+  consultant: 'コンサルタント',
+} as const;
 
-export type JobType = keyof typeof jobs
+export type JobType = keyof typeof jobs;
 
 export function isJobType(input: string): input is JobType {
   return Object.keys(jobs).some((k) => k === input);
@@ -41,11 +41,10 @@ export const getJobsLabel = (input: JobType) => {
 export type GenerateRequest = {
   job: JobType;
   mock: boolean;
-}
+};
 
 export type GenerateResult = {
   data: {
     text: string | null;
   };
 };
-
