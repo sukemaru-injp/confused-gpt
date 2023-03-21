@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Configuration, OpenAIApi } from 'openai';
 import { sleep } from '@/utils';
-import { GenerateResult, isJobType, getJobsLabel } from '@/model/JobModel';
+import { GenerateResult, isJobType, getJobsLabel, JobType } from '@/model/JobModel';
 
 type BadRequest = {
   name: 'badRequest';
@@ -19,11 +19,15 @@ const configuration = new Configuration({
 
 const api = new OpenAIApi(configuration);
 
+const createPrompt = (input: JobType) => {
+  return `${getJobsLabel(input)}職の採用面接で聞くべき質問を考えてください`;
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<GenerateResult | BadRequest | UnknownError>,
 ) {
-  console.info('GenerateFortune:');
+  console.info('Generate:');
 
   if (!isJobType(req.body.job)) {
     return res.status(400).json({ name: 'badRequest', detail: 'required job type' });
@@ -33,19 +37,21 @@ export default async function handler(
     await sleep(5000);
     return res.status(200).json({
       data: {
-        text: `\n\n${getJobsLabel(req.body.job)}にするべき質問は以下の通りです`,
+        text: `\n\n1.なぜこのキャリアを選びましたか？\n2.戦略を立てる上で、最も重要な要素は何だと思いますか？\n3.デジタルマーケティングを使ったことがありますか？どのようにして活用しているか教えてください。`,
       },
     });
   }
 
-  console.info('GenerateFortune:requestOk', req.body.zodiac);
   try {
     const gptResponse = await api.createCompletion({
       model: 'text-davinci-003',
       temperature: 0.1,
-      prompt: '',
+      prompt: createPrompt(req.body.job),
       max_tokens: 3000,
     });
+
+    console.info('Generate:requestOk');
+
     res.status(200).json({
       data: {
         text: gptResponse.data.choices[0].text ?? null,

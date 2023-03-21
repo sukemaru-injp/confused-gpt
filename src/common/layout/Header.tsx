@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
   return (
     <HeaderStyle>
       <Anchor href='/'>
-        <Title>エリンギ質問Gen</Title>
+        <Title>エリンギ採用面接Gen</Title>
       </Anchor>
     </HeaderStyle>
   );
