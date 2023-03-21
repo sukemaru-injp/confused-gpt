@@ -5,7 +5,7 @@ import { mediaQuery } from "@/common/ui/styles/mixin";
 import { Form } from "./Form";
 import Image from "next/image";
 
-export const FortuneSection = () => {
+export const MainSection = () => {
   return (
     <Wrapper>
       <Form />
