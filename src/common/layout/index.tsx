@@ -14,10 +14,10 @@ type Props = {
 };
 export const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <>
+    <div className={kosugi.className}>
       <Header />
-      <main style={{ minHeight: '100vh', backgroundColor: `${colors.bg}` }} className={kosugi.className}>{children}</main>
+      <main style={{ minHeight: '100vh', backgroundColor: `${colors.bg}` }}>{children}</main>
       <Footer />
-    </>
+    </div>
   );
 };

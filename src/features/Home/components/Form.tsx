@@ -34,7 +34,7 @@ const FormWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: ${spacings.XS};
+  gap: ${spacings.M};
 `;
 const Span = styled.span`
   padding: ${spacings.XS} 0;
