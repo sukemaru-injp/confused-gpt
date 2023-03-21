@@ -47,7 +47,7 @@ export default async function handler(
       prompt: `${getZodiacLabel(
         req.body.zodiac,
       )}の今日の運勢みたいな文章を作ってください。仕事や恋愛に関することも盛り込んでください`,
-      max_tokens: 1800,
+      max_tokens: 3000,
     });
     res.status(200).json({
       data: {
