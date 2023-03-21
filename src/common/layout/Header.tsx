@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
   return (
     <HeaderStyle>
       <Anchor href='/'>
-        <Title>エリンギ占い</Title>
+        <Title>エリンギ質問Gen</Title>
       </Anchor>
     </HeaderStyle>
   );
@@ -21,6 +21,6 @@ const HeaderStyle = styled.header`
   align-items: center;
   padding: 0 ${spacings.S};
 `;
-const Title = styled.h1`
+const Title = styled.h2`
   color: ${colors.white};
 `;

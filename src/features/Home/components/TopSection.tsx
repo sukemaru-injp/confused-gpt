@@ -6,7 +6,7 @@ import { mediaQuery } from '@/common/ui/styles/mixin';
 export const TopSection = () => {
   return (
     <Wrapper>
-      <h2>OpenAI搭載のエリンギが占います</h2>
+      <h2>OpenAI搭載のエリンギが採用面接の質問を考えます</h2>
     </Wrapper>
   );
 };
