@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { Select } from '@/common/ui/Select';
 import { genderOptions, GenderType } from '@/model/Gender';
-import { Likes } from '@/model/CreateIntroduce';
+import { Likes, CreateIntroduceRequest } from '@/model/CreateIntroduce';
 import { colors, spacings } from '@/common/ui/styles';
 import { Button } from '@/common/ui/Button';
 import { FormItem } from '@/common/ui/FormItem';
@@ -49,9 +49,14 @@ const IconWrapper = styled.span`
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-
 `
-export const Form = (): JSX.Element => {
+
+type Props = {
+  onSubmit: (val: CreateIntroduceRequest['value']) => void
+}
+export const Form = ({
+  onSubmit
+}: Props): JSX.Element => {
   const [select, setSelect] = useState<GenderType>(genderOptions[0].value);
 
   const [age, setAge] = useState<number>(20);
@@ -89,18 +94,22 @@ export const Form = (): JSX.Element => {
   }, [])
 
   const handleClick = useCallback(() => {
-    console.log('onClick:', select);
-  }, [select]);
+    onSubmit({
+      gender: select,
+      age,
+      likes
+    })
+  }, [select, onSubmit, likes, age]);
 
   return (
     <FormWrapper>
       <Span>簡単にプロフィールを入力してください↓</Span>
       <FormItem label='性別'>
-        <Select options={genderOptions} onChange={handleChange} />
+        <Select options={genderOptions} onChange={handleChange} width="120px" />
       </FormItem>
 
       <FormItem label='年齢'>
-        <Input value={age} onChange={handleChangeAge} type='number' />
+        <Input value={age} onChange={handleChangeAge} type='number' min={12} />
       </FormItem>
 
       <FormItem label='好きなもの'>

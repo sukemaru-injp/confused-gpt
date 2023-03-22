@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Configuration, OpenAIApi } from 'openai';
 import { sleep } from '@/utils';
-import { GenerateResult, isJobType, getJobsLabel, JobType } from '@/model/JobModel';
+import { CreateIntroduceRequest, GenerateResult, isCreateIntroduceRequestValue } from '@/model/CreateIntroduce';
+import { getGenderLabel } from '@/model/Gender';
 
 type BadRequest = {
   name: 'badRequest';
@@ -19,8 +20,14 @@ const configuration = new Configuration({
 
 const api = new OpenAIApi(configuration);
 
-const createPrompt = (input: JobType) => {
-  return `${getJobsLabel(input)}職の採用面接で聞くべき質問を考えてください`;
+const createPrompt = (input: CreateIntroduceRequest['value']) => {
+  const likes = input.likes.flatMap(({ value }) => {
+    if (value === '') return []
+
+    return [value]
+  }, [])
+
+  return `${input.age}歳、${getGenderLabel(input.gender)}です。好きなものは${likes.join('・')}です。マッチングアプリなどで使えるユーモアのある自己紹介文章を考えてください`;
 };
 
 export default async function handler(
@@ -29,15 +36,15 @@ export default async function handler(
 ) {
   console.info('Generate:');
 
-  if (!isJobType(req.body.job)) {
-    return res.status(400).json({ name: 'badRequest', detail: 'required job type' });
+  if (!isCreateIntroduceRequestValue(req.body.value)) {
+    return res.status(400).json({ name: 'badRequest', detail: 'value is failed' });
   }
 
   if (req.body.mock) {
     await sleep(5000);
     return res.status(200).json({
       data: {
-        text: `\n\n1.なぜこのキャリアを選びましたか？\n2.戦略を立てる上で、最も重要な要素は何だと思いますか？\n3.デジタルマーケティングを使ったことがありますか？どのようにして活用しているか教えてください。`,
+        text: 'はい、こんにちは！私は、サウナ、キャンプ、そしてラーメンが大好きな25歳の男性です。これまで、サウナで身体を温め、キャンプで自然に触れ、ラーメンでお腹を満たしてきましたが、一人で楽しむのはさすがに寂しいものです。そこで、このマッチングアプリで私と一緒に、サウナで蒸され、キャンプで焚火を囲み、ラーメンでお互いの好みを語り合いませんか？もしも、あなたも同じようにこれらの趣味に興味があるのであれば、ぜひ一緒に楽しみましょう！',
       },
     });
   }
@@ -46,7 +53,7 @@ export default async function handler(
     const gptResponse = await api.createCompletion({
       model: 'text-davinci-003',
       temperature: 0.1,
-      prompt: createPrompt(req.body.job),
+      prompt: createPrompt(req.body.value),
       max_tokens: 3000,
     });
 
