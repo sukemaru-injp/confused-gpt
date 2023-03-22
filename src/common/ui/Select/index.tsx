@@ -39,6 +39,7 @@ const SelectStyle = styled.select<{ width: string }>`
   border-radius: 5px;
   padding: ${spacings.S};
   outline: none;
+  border: none;
   appearance: none;
   cursor: pointer;
   width: ${({ width }) => width};

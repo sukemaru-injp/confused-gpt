@@ -4,9 +4,18 @@ import { Select } from '@/common/ui/Select';
 import { genderOptions, GenderType } from '@/model/Gender';
 import { spacings } from '@/common/ui/styles';
 import { Button } from '@/common/ui/Button';
+import { FormItem } from '@/common/ui/FormItem';
+import { Input } from '@/common/ui/Input';
 
 export const Form = (): JSX.Element => {
   const [select, setSelect] = useState<GenderType>(genderOptions[0].value);
+
+  const [age, setAge] = useState<number>(20)
+
+  const handleChangeAge = useCallback<React.ChangeEventHandler<HTMLInputElement>>((e) => {
+    const val = Number(e.target.value)
+    setAge(val)
+  }, [])
 
   const handleChange = useCallback((v: GenderType) => {
     setSelect(v);
@@ -19,7 +28,17 @@ export const Form = (): JSX.Element => {
   return (
     <FormWrapper>
       <Span>簡単にプロフィールを入力してください↓</Span>
-      <Select options={genderOptions} onChange={handleChange} width='210px' />
+      <FormItem label='性別'>
+        <Select options={genderOptions} onChange={handleChange} />
+      </FormItem>
+
+      <FormItem label='年齢'>
+        <Input value={age} onChange={handleChangeAge} type='number' />
+      </FormItem>
+
+      <FormItem label='好きなもの'>
+        
+      </FormItem>
       <Button onClick={handleClick}>自己紹介を生成する</Button>
     </FormWrapper>
   );
@@ -27,7 +46,7 @@ export const Form = (): JSX.Element => {
 
 const FormWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   gap: ${spacings.M};
 `;
