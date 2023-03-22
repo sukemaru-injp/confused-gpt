@@ -1,9 +1,9 @@
-import { GenderType } from "./Gender";
+import { GenderType } from './Gender';
 
 export type CreateIntroduceRequest = {
-  value: { 
-    gender: GenderType
-  },
+  value: {
+    gender: GenderType;
+  };
   mock: boolean;
 };
 

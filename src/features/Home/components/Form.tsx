@@ -10,19 +10,19 @@ import { Input } from '@/common/ui/Input';
 export const Form = (): JSX.Element => {
   const [select, setSelect] = useState<GenderType>(genderOptions[0].value);
 
-  const [age, setAge] = useState<number>(20)
+  const [age, setAge] = useState<number>(20);
 
   const handleChangeAge = useCallback<React.ChangeEventHandler<HTMLInputElement>>((e) => {
-    const val = Number(e.target.value)
-    setAge(val)
-  }, [])
+    const val = Number(e.target.value);
+    setAge(val);
+  }, []);
 
   const handleChange = useCallback((v: GenderType) => {
     setSelect(v);
   }, []);
 
   const handleClick = useCallback(() => {
-    console.log('onClick:', select)
+    console.log('onClick:', select);
   }, [select]);
 
   return (
@@ -36,9 +36,7 @@ export const Form = (): JSX.Element => {
         <Input value={age} onChange={handleChangeAge} type='number' />
       </FormItem>
 
-      <FormItem label='好きなもの'>
-        
-      </FormItem>
+      <FormItem label='好きなもの'><p>likes</p></FormItem>
       <Button onClick={handleClick}>自己紹介を生成する</Button>
     </FormWrapper>
   );

@@ -33,7 +33,10 @@ export const CommonHead: React.FC<Props> = ({ title }) => {
     <>
       <Head>
         <title>{customTitle}</title>
-        <meta name='description' content='OpenAI搭載のエリンギが自己紹介で使えそうな文章を生成します|マッチングアプリ自己紹介' />
+        <meta
+          name='description'
+          content='OpenAI搭載のエリンギが自己紹介で使えそうな文章を生成します|マッチングアプリ自己紹介'
+        />
         <link rel='icon' href='/favicon.ico' />
         <Gtm />
       </Head>
