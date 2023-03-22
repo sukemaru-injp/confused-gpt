@@ -1,33 +1,30 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { Select } from '@/common/ui/Select';
-import { jobOptions, JobType } from '@/model/JobModel';
+import { genderOptions, GenderType } from '@/model/Gender';
 import { spacings } from '@/common/ui/styles';
 import { Button } from '@/common/ui/Button';
-import { useRouter } from 'next/router';
 
 export const Form = (): JSX.Element => {
-  const [select, setSelect] = useState<JobType>(jobOptions[0].value);
-  const router = useRouter();
+  const [select, setSelect] = useState<GenderType>(genderOptions[0].value);
 
-  const handleChange = useCallback((v: JobType) => {
+  const handleChange = useCallback((v: GenderType) => {
     setSelect(v);
   }, []);
 
   const handleClick = useCallback(() => {
-    router.push({
-      pathname: `/interview/${select}`,
-    });
-  }, [router, select]);
+    console.log('onClick:', select)
+  }, [select]);
 
   return (
     <FormWrapper>
-      <Span>採用したい職種↓</Span>
-      <Select options={jobOptions} onChange={handleChange} width='210px' />
-      <Button onClick={handleClick}>質問を生成する</Button>
+      <Span>簡単にプロフィールを入力してください↓</Span>
+      <Select options={genderOptions} onChange={handleChange} width='210px' />
+      <Button onClick={handleClick}>自己紹介を生成する</Button>
     </FormWrapper>
   );
 };
+
 const FormWrapper = styled.div`
   display: flex;
   align-items: center;
