@@ -4,7 +4,7 @@ export type CreateIntroduceRequest = {
   value: {
     gender: GenderType;
     age: number;
-    likes: Likes
+    likes: Likes;
   };
   mock: boolean;
 };
@@ -15,24 +15,26 @@ export type GenerateResult = {
   };
 };
 
-export type Likes = readonly { id: string; value: string; }[]
+export type Likes = readonly { id: string; value: string }[];
 
 const isLikes = (input: any): input is Likes => {
   if (!Array.isArray(input)) {
-    return false
+    return false;
   }
 
   if (input.some((v) => typeof v.id !== 'string' || typeof v.value !== 'string')) {
-    return false
+    return false;
   }
 
-  return true
-}
+  return true;
+};
 
-export const isCreateIntroduceRequestValue = (input: any): input is CreateIntroduceRequest['value'] => {
+export const isCreateIntroduceRequestValue = (
+  input: any,
+): input is CreateIntroduceRequest['value'] => {
   if (!isGender(input?.gender) || typeof input?.age !== 'number' || !isLikes(input.likes)) {
-    return false
+    return false;
   }
 
-  return true
-}
+  return true;
+};

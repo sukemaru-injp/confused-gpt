@@ -6,6 +6,5 @@ const client = axios.create({
   },
 });
 
-
 export const generateIntroduce = (req: CreateIntroduceRequest) =>
   client.post<CreateIntroduceRequest, AxiosResponse<GenerateResult>>('/api/generate', req);

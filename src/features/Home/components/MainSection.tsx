@@ -11,11 +11,11 @@ export const MainSection = () => {
   const handleSubmit = useCallback(async (val: CreateIntroduceRequest['value']) => {
     const res = await generateIntroduceAdapter({
       value: val,
-      mock: true
-    })
+      mock: true,
+    });
 
-    console.log('生成!', res)
-  }, [])
+    console.log('生成!', res);
+  }, []);
 
   return (
     <Wrapper>

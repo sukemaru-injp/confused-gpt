@@ -4,5 +4,5 @@ export const colors = {
   white: '#fff',
   gray: '#778899',
   bg: '#f5f5dc',
-  delete: '#dc143c'
+  delete: '#dc143c',
 } as const;

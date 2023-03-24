@@ -5,7 +5,9 @@ import { CreateIntroduceRequest, GenerateResult } from '@/model/CreateIntroduce'
 
 export type InterviewAdapter = AdapterType<GenerateResult>;
 
-export const generateIntroduceAdapter = async (req: CreateIntroduceRequest): Promise<InterviewAdapter> => {
+export const generateIntroduceAdapter = async (
+  req: CreateIntroduceRequest,
+): Promise<InterviewAdapter> => {
   try {
     const { data } = await generateIntroduce(req);
     return ok(data);

@@ -13,68 +13,66 @@ import { Plus, DeleteIcon } from '@/common/ui/Icons';
 type LikeViewProps = {
   id: string;
   value: string;
-  onChange: (val: { value: string; id: string; }) => void;
+  onChange: (val: { value: string; id: string }) => void;
   onClickDelete: (id: string) => void;
-}
+};
 const LikeView = (props: LikeViewProps): JSX.Element => {
-  const [input, updateInput] = useState(props.value)
+  const [input, updateInput] = useState(props.value);
 
-  const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((e) => {
-    const val = e.target.value
-    updateInput(val)
+  const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+    (e) => {
+      const val = e.target.value;
+      updateInput(val);
 
-    props.onChange({
-      id: props.id,
-      value: val
-    })
-  }, [props])
+      props.onChange({
+        id: props.id,
+        value: val,
+      });
+    },
+    [props],
+  );
 
   const handleDelete = useCallback(() => {
-    props.onClickDelete(props.id)
-  }, [props])
+    props.onClickDelete(props.id);
+  }, [props]);
 
   return (
     <LikeWrapper>
-      <Input value={input} onChange={handleChange} placeholder="例）旅行" />
-      <IconWrapper onClick={handleDelete}><DeleteIcon /></IconWrapper>
+      <Input value={input} onChange={handleChange} placeholder='例）旅行' />
+      <IconWrapper onClick={handleDelete}>
+        <DeleteIcon />
+      </IconWrapper>
     </LikeWrapper>
-  )
-}
+  );
+};
 const LikeWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: ${spacings.XS};
-`
+`;
 const IconWrapper = styled.span`
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-`
+`;
 
 type Props = {
-  onSubmit: (val: CreateIntroduceRequest['value']) => void
-}
-export const Form = ({
-  onSubmit
-}: Props): JSX.Element => {
+  onSubmit: (val: CreateIntroduceRequest['value']) => void;
+};
+export const Form = ({ onSubmit }: Props): JSX.Element => {
   const [select, setSelect] = useState<GenderType>(genderOptions[0].value);
 
   const [age, setAge] = useState<number>(20);
 
-  const [likes, setLikes] = useState<Likes>(() => [
-    { id: uuidv4(), value: ''}
-  ])
+  const [likes, setLikes] = useState<Likes>(() => [{ id: uuidv4(), value: '' }]);
 
-  const handleChangeLikes = useCallback(({
-    id,
-    value
-  }: { id: string; value: string }) => {
+  const handleChangeLikes = useCallback(({ id, value }: { id: string; value: string }) => {
     setLikes((likes) => {
       return likes.reduce<Likes>((acc, cur) => {
-        return cur.id === id ? [...acc, { ...cur, value }] : [...acc, cur]
-      }, [])
-    })
-  }, [])
+        return cur.id === id ? [...acc, { ...cur, value }] : [...acc, cur];
+      }, []);
+    });
+  }, []);
 
   const handleChangeAge = useCallback<React.ChangeEventHandler<HTMLInputElement>>((e) => {
     const val = Number(e.target.value);
@@ -86,26 +84,26 @@ export const Form = ({
   }, []);
 
   const handleClickAdd = useCallback(() => {
-    setLikes((likes) => [...likes, { id: uuidv4(), value: '' }]) 
-  }, [])
+    setLikes((likes) => [...likes, { id: uuidv4(), value: '' }]);
+  }, []);
 
   const handleDelete = useCallback((id: string) => {
-    setLikes((likes) => likes.filter((l) => l.id !== id))
-  }, [])
+    setLikes((likes) => likes.filter((l) => l.id !== id));
+  }, []);
 
   const handleClick = useCallback(() => {
     onSubmit({
       gender: select,
       age,
-      likes
-    })
+      likes,
+    });
   }, [select, onSubmit, likes, age]);
 
   return (
     <FormWrapper>
       <Span>簡単にプロフィールを入力してください↓</Span>
       <FormItem label='性別'>
-        <Select options={genderOptions} onChange={handleChange} width="120px" />
+        <Select options={genderOptions} onChange={handleChange} width='120px' />
       </FormItem>
 
       <FormItem label='年齢'>
@@ -117,9 +115,14 @@ export const Form = ({
           {likes.map((l, idx) => {
             return (
               <React.Fragment key={`input${idx}${l.id}`}>
-                <LikeView value={l.value} id={l.id} onChange={handleChangeLikes} onClickDelete={handleDelete} />
+                <LikeView
+                  value={l.value}
+                  id={l.id}
+                  onChange={handleChangeLikes}
+                  onClickDelete={handleDelete}
+                />
               </React.Fragment>
-            )
+            );
           })}
           <SubLabel onClick={handleClickAdd}>
             追加する
@@ -146,11 +149,11 @@ const LikesWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${spacings.XS};
-`
+`;
 const SubLabel = styled.span`
   display: inline-flex;
   align-items: center;
   color: ${colors.gray};
   cursor: pointer;
   padding: ${spacings.S};
-`
+`;

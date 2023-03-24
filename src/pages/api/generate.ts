@@ -1,7 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Configuration, OpenAIApi } from 'openai';
 import { sleep } from '@/utils';
-import { CreateIntroduceRequest, GenerateResult, isCreateIntroduceRequestValue } from '@/model/CreateIntroduce';
+import {
+  CreateIntroduceRequest,
+  GenerateResult,
+  isCreateIntroduceRequestValue,
+} from '@/model/CreateIntroduce';
 import { getGenderLabel } from '@/model/Gender';
 
 type BadRequest = {
@@ -22,12 +26,14 @@ const api = new OpenAIApi(configuration);
 
 const createPrompt = (input: CreateIntroduceRequest['value']) => {
   const likes = input.likes.flatMap(({ value }) => {
-    if (value === '') return []
+    if (value === '') return [];
 
-    return [value]
-  }, [])
+    return [value];
+  }, []);
 
-  return `${input.age}歳、${getGenderLabel(input.gender)}です。好きなものは${likes.join('・')}です。マッチングアプリなどで使えるユーモアのある自己紹介文章を考えてください`;
+  return `${input.age}歳、${getGenderLabel(input.gender)}です。好きなものは${likes.join(
+    '・',
+  )}です。マッチングアプリなどで使えるユーモアのある自己紹介を考えてください。`;
 };
 
 export default async function handler(
@@ -50,18 +56,27 @@ export default async function handler(
   }
 
   try {
-    const gptResponse = await api.createCompletion({
-      model: 'text-davinci-003',
+    const gptResponse = await api.createChatCompletion({
+      model: 'gpt-3.5-turbo',
       temperature: 0.1,
-      prompt: createPrompt(req.body.value),
-      max_tokens: 3000,
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a comedian, answer any question with humor',
+        },
+        {
+          role: 'user',
+          content: createPrompt(req.body.value),
+        },
+      ],
+      max_tokens: 1000,
     });
 
-    console.info('Generate:requestOk');
+    console.info('Generate:requestOk', gptResponse.data);
 
     res.status(200).json({
       data: {
-        text: gptResponse.data.choices[0].text ?? null,
+        text: gptResponse.data.choices[0].message?.content ?? null,
       },
     });
   } catch (e: unknown) {
