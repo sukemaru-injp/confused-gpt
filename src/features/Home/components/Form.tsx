@@ -102,6 +102,7 @@ export const Form = ({ onSubmit }: Props): JSX.Element => {
   return (
     <FormWrapper>
       <Span>簡単にプロフィールを入力してください↓</Span>
+
       <FormItem label='性別'>
         <Select options={genderOptions} onChange={handleChange} width='120px' />
       </FormItem>

@@ -33,7 +33,7 @@ const createPrompt = (input: CreateIntroduceRequest['value']) => {
 
   return `${input.age}歳、${getGenderLabel(input.gender)}です。好きなものは${likes.join(
     '・',
-  )}です。マッチングアプリなどで使えるユーモアのある自己紹介を考えてください。`;
+  )}です。マッチングアプリで使えるユーモアのある自己紹介を考えてください。`;
 };
 
 export default async function handler(
