@@ -11,6 +11,8 @@ import {
 } from '@/utils/adapter/generateInterviewAdapter';
 import { resource, Resource } from '@/utils';
 import { Failed } from '@/features/Failed';
+import { mediaQuery } from '@/common/ui/styles/mixin';
+import { toast } from 'react-toastify';
 
 type ViewProps = {
   text: string;
@@ -19,11 +21,13 @@ type ViewProps = {
 
 const ContentsView: React.FC<ViewProps> = ({ text, onClose }) => {
   const handleClickCopy = useCallback(() => {
-    navigator.clipboard.writeText(text)
+    navigator.clipboard.writeText(text).then(() => {
+      toast.success('コピーしました')
+    })
   }, [text])
 
   return (
-    <>
+    <Wrapper>
       <Title>自己紹介</Title>
 
       <p>{text}</p>
@@ -32,14 +36,33 @@ const ContentsView: React.FC<ViewProps> = ({ text, onClose }) => {
         <Button onClick={handleClickCopy}>コピーする</Button>
         <CloseButton onClick={() => onClose()}>閉じる</CloseButton>
       </Lower>
-    </>
+    </Wrapper>
   );
 };
+const Wrapper = styled.div`
+  padding: ${spacings.L};
+
+  ${mediaQuery(
+    `
+    padding: ${spacings.S};
+  `,
+    'spOnly',
+  )}
+`
 const Lower = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   gap: ${spacings.M};
   padding: ${spacings.L} ${spacings.L} ${spacings.S};
+  text-align: center;
+
+  ${mediaQuery(
+    `
+    flex-direction: column;
+  `,
+    'spOnly',
+  )}
 `;
 const CloseButton = styled(Button)`
   background-color: ${colors.sub};
