@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { Dialog } from '@/common/ui/Dialog';
 import { Button } from '@/common/ui/Button';
@@ -18,6 +18,10 @@ type ViewProps = {
 };
 
 const ContentsView: React.FC<ViewProps> = ({ text, onClose }) => {
+  const handleClickCopy = useCallback(() => {
+    navigator.clipboard.writeText(text)
+  }, [text])
+
   return (
     <>
       <Title>自己紹介</Title>
@@ -25,6 +29,7 @@ const ContentsView: React.FC<ViewProps> = ({ text, onClose }) => {
       <p>{text}</p>
 
       <Lower>
+        <Button onClick={handleClickCopy}>コピーする</Button>
         <CloseButton onClick={() => onClose()}>閉じる</CloseButton>
       </Lower>
     </>
@@ -33,7 +38,8 @@ const ContentsView: React.FC<ViewProps> = ({ text, onClose }) => {
 const Lower = styled.div`
   display: flex;
   flex-direction: column;
-  padding: ${spacings.L};
+  gap: ${spacings.M};
+  padding: ${spacings.L} ${spacings.L} ${spacings.S};
 `;
 const CloseButton = styled(Button)`
   background-color: ${colors.sub};
