@@ -3,11 +3,11 @@ import { AdapterType } from '.';
 import { ok, err } from 'neverthrow';
 import { CreateIntroduceRequest, GenerateResult } from '@/model/CreateIntroduce';
 
-export type InterviewAdapter = AdapterType<GenerateResult>;
+export type IntroduceAdapter = AdapterType<GenerateResult>;
 
 export const generateIntroduceAdapter = async (
   req: CreateIntroduceRequest,
-): Promise<InterviewAdapter> => {
+): Promise<IntroduceAdapter> => {
   try {
     const { data } = await generateIntroduce(req);
     return ok(data);
