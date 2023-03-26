@@ -9,7 +9,6 @@ import { Button } from '@/common/ui/Button';
 import { FormItem } from '@/common/ui/FormItem';
 import { Input } from '@/common/ui/Input';
 import { Plus, DeleteIcon } from '@/common/ui/Icons';
-import { useFormValidate } from './useFormValidate';
 
 type LikeViewProps = {
   id: string;
