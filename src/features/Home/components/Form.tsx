@@ -39,9 +39,9 @@ const LikeView = (props: LikeViewProps): JSX.Element => {
   return (
     <LikeWrapper>
       <Input value={input} onChange={handleChange} placeholder='例）旅行' />
-      <IconWrapper onClick={handleDelete}>
+      <IconButton onClick={handleDelete}>
         <DeleteIcon />
-      </IconWrapper>
+      </IconButton>
     </LikeWrapper>
   );
 };
@@ -50,10 +50,12 @@ const LikeWrapper = styled.div`
   align-items: center;
   gap: ${spacings.XS};
 `;
-const IconWrapper = styled.span`
+const IconButton = styled.button`
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 `;
 
 type Props = {

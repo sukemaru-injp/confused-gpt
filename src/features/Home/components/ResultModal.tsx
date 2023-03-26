@@ -102,7 +102,7 @@ export const ResultModal: React.FC<Props> = ({ isOpen, onClose, gender, age, lik
     () =>
       resource(
         generateIntroduceAdapter({
-          mock: false,
+          mock: process.env.NODE_ENV !== 'production',
           value: {
             gender,
             age,

@@ -8,9 +8,7 @@ export default function Home() {
   return (
     <>
       <CommonHead />
-      <div>
-        <HomeTemplate />
-      </div>
+      <HomeTemplate />
     </>
   );
 }
