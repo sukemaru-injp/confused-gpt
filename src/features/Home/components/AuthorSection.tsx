@@ -14,7 +14,7 @@ export const AuthorSection: React.FC = () => {
         <ImageWrapper>
           <StyledImage height={80} width={80} src='/profile-min.png' alt='profile' />
         </ImageWrapper>
-        <Job>Web-FrontendDeveloper</Job>
+        <Job>WebFrontendDeveloper</Job>
 
         <AccountsWrapper>
           <LinkIcon
