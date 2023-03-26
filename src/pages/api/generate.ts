@@ -40,13 +40,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<GenerateResult | BadRequest | UnknownError>,
 ) {
-  console.info('Generate:');
-
   if (!isCreateIntroduceRequestValue(req.body.value)) {
     return res.status(400).json({ name: 'badRequest', detail: 'value is failed' });
   }
 
   if (req.body.mock) {
+    console.info('Generate:mock');
     await sleep(5000);
     return res.status(200).json({
       data: {
@@ -56,6 +55,8 @@ export default async function handler(
   }
 
   try {
+    console.info('Generate:GPT');
+
     const gptResponse = await api.createChatCompletion({
       model: 'gpt-3.5-turbo',
       temperature: 0.1,
@@ -71,8 +72,6 @@ export default async function handler(
       ],
       max_tokens: 1000,
     });
-
-    console.info('Generate:requestOk', gptResponse.data);
 
     res.status(200).json({
       data: {

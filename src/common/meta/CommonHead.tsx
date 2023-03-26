@@ -25,7 +25,7 @@ type Props = {
 
 export const CommonHead: React.FC<Props> = ({ title }) => {
   const customTitle = useMemo(
-    () => (title ? `${title} | エリンギ自己紹介Gen` : 'エリンギ自己紹介Gen'),
+    () => (title ? `${title} | エリンギプロフィールメーカー` : 'エリンギプロフィールメーカー'),
     [title],
   );
 
@@ -35,7 +35,7 @@ export const CommonHead: React.FC<Props> = ({ title }) => {
         <title>{customTitle}</title>
         <meta
           name='description'
-          content='OpenAI搭載のエリンギが自己紹介で使えそうな文章を生成します|マッチングアプリ自己紹介'
+          content='OpenAI搭載のエリンギが自己紹介で使えそうな文章を生成します|マッチングアプリ自己紹介|プロフィールメーカー'
         />
         <link rel='icon' href='/favicon.ico' />
         <Gtm />

@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
   return (
     <HeaderStyle>
       <Anchor href='/'>
-        <Title>エリンギ自己紹介Gen</Title>
+        <Title>エリンギAI</Title>
       </Anchor>
     </HeaderStyle>
   );
@@ -23,4 +23,5 @@ const HeaderStyle = styled.header`
 `;
 const Title = styled.h2`
   color: ${colors.white};
+  font-weight: bold;
 `;

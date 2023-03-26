@@ -5,7 +5,6 @@ import { mediaQuery } from '@/common/ui/styles/mixin';
 import { Form } from './Form';
 import Image from 'next/image';
 import { CreateIntroduceRequest } from '@/model/CreateIntroduce';
-import { generateIntroduceAdapter } from '@/utils/adapter/generateInterviewAdapter';
 import { ResultModal } from './ResultModal';
 
 type ContentsReadyType =
@@ -23,13 +22,6 @@ export const MainSection = () => {
       val,
     });
     updateOpenModal(true);
-
-    const res = await generateIntroduceAdapter({
-      value: val,
-      mock: true,
-    });
-
-    console.log('生成!', res);
   }, []);
 
   const handleClose = useCallback(() => {

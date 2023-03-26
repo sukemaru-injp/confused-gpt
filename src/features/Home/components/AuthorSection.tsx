@@ -16,6 +16,6 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const Title = styled.h2`
+const Title = styled.h4`
   text-align: center;
 `;

@@ -13,6 +13,7 @@ import { resource, Resource } from '@/utils';
 import { Failed } from '@/features/Failed';
 import { mediaQuery } from '@/common/ui/styles/mixin';
 import { toast } from 'react-toastify';
+import { Loader } from '@/common/ui/Loader';
 
 type ViewProps = {
   text: string;
@@ -22,9 +23,9 @@ type ViewProps = {
 const ContentsView: React.FC<ViewProps> = ({ text, onClose }) => {
   const handleClickCopy = useCallback(() => {
     navigator.clipboard.writeText(text).then(() => {
-      toast.success('コピーしました')
-    })
-  }, [text])
+      toast.success('コピーしました');
+    });
+  }, [text]);
 
   return (
     <Wrapper>
@@ -48,7 +49,7 @@ const Wrapper = styled.div`
   `,
     'spOnly',
   )}
-`
+`;
 const Lower = styled.div`
   display: flex;
   flex-direction: row;
@@ -101,7 +102,7 @@ export const ResultModal: React.FC<Props> = ({ isOpen, onClose, gender, age, lik
     () =>
       resource(
         generateIntroduceAdapter({
-          mock: true,
+          mock: false,
           value: {
             gender,
             age,
@@ -119,7 +120,7 @@ export const ResultModal: React.FC<Props> = ({ isOpen, onClose, gender, age, lik
         contentLabel='resultText'
         shouldCloseOnOverlayClick={false}
       >
-        <React.Suspense fallback={<p>Loading...</p>}>
+        <React.Suspense fallback={<Loader />}>
           <Contents onClose={onClose} generateResource={generateResource} />
         </React.Suspense>
       </Dialog>
