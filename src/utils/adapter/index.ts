@@ -1,4 +1,4 @@
-import { ok, err, Ok, Err } from 'neverthrow';
+import { Ok, Err } from 'neverthrow';
 
 type DefaultError = {
   name: 'error';

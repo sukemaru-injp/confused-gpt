@@ -21,7 +21,7 @@ export function Select<T extends string | number>({
     }
 
     onChange(value as T);
-  }, []);
+  }, [onChange, options]);
 
   return (
     <SelectStyle onChange={handleChange} width={width}>
