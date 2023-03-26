@@ -9,6 +9,7 @@ import { Button } from '@/common/ui/Button';
 import { FormItem } from '@/common/ui/FormItem';
 import { Input } from '@/common/ui/Input';
 import { Plus, DeleteIcon } from '@/common/ui/Icons';
+import { useFormValidate } from './useFormValidate';
 
 type LikeViewProps = {
   id: string;
@@ -93,7 +94,7 @@ export const Form = ({ onSubmit }: Props): JSX.Element => {
     setLikes((likes) => likes.filter((l) => l.id !== id));
   }, []);
 
-  const handleClick = useCallback(() => {
+  const handleClick = useCallback(async () => {
     onSubmit({
       gender: select,
       age,

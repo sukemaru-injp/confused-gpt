@@ -3,7 +3,7 @@ export const genderOptions = [
   { label: '女性', value: 'woman' },
 ] as const;
 
-const gender = {
+export const gender = {
   man: '男性',
   woman: '女性',
 } as const;
