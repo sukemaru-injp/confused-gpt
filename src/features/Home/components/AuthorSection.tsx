@@ -47,6 +47,7 @@ const Wrapper = styled.div`
 `;
 const Title = styled.h4`
   text-align: center;
+  color: ${colors.gray};
 `;
 const Card = styled.div`
   padding: ${spacings.M};
