@@ -38,7 +38,9 @@ const LikeView = (props: LikeViewProps): JSX.Element => {
 
   return (
     <LikeWrapper>
-      <Input value={input} onChange={handleChange} placeholder='例）旅行' />
+      <InputWrapper>
+        <Input value={input} onChange={handleChange} placeholder='例）旅行' />
+      </InputWrapper>
       <IconButton onClick={handleDelete}>
         <DeleteIcon />
       </IconButton>
@@ -49,6 +51,7 @@ const LikeWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: ${spacings.XS};
+  width: 100%;
 `;
 const IconButton = styled.button`
   display: inline-flex;
@@ -57,6 +60,7 @@ const IconButton = styled.button`
   border: none;
   background-color: transparent;
 `;
+const InputWrapper = styled.div``;
 
 type Props = {
   onSubmit: (val: CreateIntroduceRequest['value']) => void;
@@ -106,11 +110,15 @@ export const Form = ({ onSubmit }: Props): JSX.Element => {
       <Span>簡単にプロフィールを入力してください↓</Span>
 
       <FormItem label='性別'>
-        <Select options={genderOptions} onChange={handleChange} width='120px' />
+        <InputWrapper>
+          <Select options={genderOptions} onChange={handleChange} width='120px' />
+        </InputWrapper>
       </FormItem>
 
       <FormItem label='年齢'>
-        <Input value={age} onChange={handleChangeAge} type='number' min={12} />
+        <InputWrapper>
+          <Input value={age} onChange={handleChangeAge} type='number' min={12} />
+        </InputWrapper>
       </FormItem>
 
       <FormItem label='好きなもの'>
