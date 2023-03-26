@@ -80,7 +80,12 @@ type ContentsProps = {
 const Contents: React.FC<ContentsProps> = ({ onClose, generateResource }) => {
   const res = generateResource.read();
   if (res.isErr() || res.value.data.text == null) {
-    return <Failed />;
+    return (
+      <>
+        <Failed />
+        <CloseButton onClick={() => onClose()}>閉じる</CloseButton>
+      </>
+    );
   }
 
   return (

@@ -13,15 +13,18 @@ export function Select<T extends string | number>({
   options,
   width = '100%',
 }: Props<T>): JSX.Element {
-  const handleChange = useCallback<React.ChangeEventHandler<HTMLSelectElement>>((e) => {
-    const value = e.target.value;
+  const handleChange = useCallback<React.ChangeEventHandler<HTMLSelectElement>>(
+    (e) => {
+      const value = e.target.value;
 
-    if (typeof options[0].value === 'number') {
-      onChange(Number(value) as T);
-    }
+      if (typeof options[0].value === 'number') {
+        onChange(Number(value) as T);
+      }
 
-    onChange(value as T);
-  }, [onChange, options]);
+      onChange(value as T);
+    },
+    [onChange, options],
+  );
 
   return (
     <SelectStyle onChange={handleChange} width={width}>
