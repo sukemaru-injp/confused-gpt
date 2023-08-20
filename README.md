@@ -6,8 +6,8 @@ openAIで自己紹介文章を生成します
 ## 起動
 
 ```
-$ yarn install
-$ yarn dev
+$ pnpm install
+$ pnpm dev
 ```
 
 ## use
