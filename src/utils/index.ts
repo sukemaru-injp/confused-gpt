@@ -1,38 +1,69 @@
+export type Brand<K, T> = K & { __brand: T };
+
 export const sleep = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-type ResourceStatus = 'pending' | 'fulfilled' | 'rejected';
-export type Resource<T> = {
+type ResourceSet<T> = 
+  | { status: 'pending' }
+  | { status: 'fulfilled'; value: T }
+  | { status: 'rejected', value: Error }
+
+type ResourceResolver<T> = () => Promise<T>;
+const emptyResult = Symbol('emptyResult');
+export type ResourceType<T> = {
   read: () => T;
 };
-export function resource<T>(promise: Promise<T>): Resource<T> {
-  let status: ResourceStatus = 'pending';
-  let res: T;
 
-  const suspender = promise.then(
-    (r) => {
-      status = 'fulfilled';
-      res = r;
-    },
-    (e) => {
-      status = 'rejected';
-      res = e;
-    },
-  );
+export class Resource<T> {
+  protected resourceSet: ResourceSet<T> = { status: 'pending' };
+  protected suspender: Promise<T | typeof emptyResult>;
+  protected readonly resolver: ResourceResolver<T>;
 
-  const read = () => {
-    switch (status) {
+  constructor(resolver: ResourceResolver<T>) {
+    this.suspender = Promise.resolve(emptyResult)
+    this.resolver = resolver;
+  }
+
+  public static set<T>(resolver: ResourceResolver<T>) {
+    const resource = new this(resolver);
+    resource.resolve()
+    return resource;
+  }
+
+  public resolve(): void {
+    this.resourceSet = { status: 'pending' };
+
+    const suspender = this.resolver()
+    .then((val) => {
+      this.resourceSet = {
+        status: 'fulfilled',
+        value: val
+      }
+      return val
+    })
+    .catch<typeof emptyResult>((err) => {
+      const error = !(err instanceof Error) ? new Error(JSON.stringify(err)) : err
+      this.resourceSet = {
+        status: 'rejected',
+        value: error
+      }
+      return emptyResult
+    })
+
+    this.suspender = suspender
+  }
+
+  public read(): T {
+    switch (this.resourceSet.status) {
       case 'pending':
-        throw suspender;
+        throw this.suspender;
       case 'fulfilled':
-        return res;
+        return this.resourceSet.value;
       case 'rejected':
-        throw res;
+        throw this.resourceSet.value;
       default:
         throw new Error('予想外');
     }
-  };
-
-  return { read };
+  }
 }

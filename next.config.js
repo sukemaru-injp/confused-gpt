@@ -4,7 +4,6 @@ const nextConfig = {
   compiler: {
     styledComponents: { ssr: true, minify: true },
   },
-  experimental: { appDir: true },
 };
 
 module.exports = nextConfig;
